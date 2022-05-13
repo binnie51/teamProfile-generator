@@ -16,7 +16,7 @@ const questions = {
         {
             type: "input",
             name: "name",
-            message: "What is the of the manager?",
+            message: "What is the name of the manager?",
             validate: (value) => {
                 if (value) {
                     return true
@@ -75,7 +75,68 @@ const questions = {
 
     Engineer: [
         {
+            type: "input",
+            name: "name",
+            message: "What is the name of the enginner?",
+            validate: (value) => {
+                if (value) {
+                    return true
+                }
+                else {
+                    return "Please enter the name of the engineer."
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the engineer's ID?",
+            validate: (value) => {
+                if (value) {
+                    return true
+                }
+                else {
+                    return "Please enter engineer's ID."
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the engineer's email?",
+            validate: (value) => {
+                if (value) {
+                    return true
+                }
+                else {
+                    return "Please enter engineer's email."
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "Please enter engineer's gitHub.",
+            validate: (value) => {
+                if (value) {
+                    return true
+                }
+                else {
+                    return "Please enter gitHub."
+                }
+            },
+        },
+        {
+            type: "list",
+            name: "addEmployee",
+            message: "Do you want to add another employee?",
+            choices: ["yes", "no"]
+        }
+    ],
 
+    Intern: [
+        {
+            
         }
     ]
 };
