@@ -3,7 +3,7 @@ const Employee = require("../lib/Employee");
 describe("Employee", () => {
     describe("Initialization", () => {
         it("should instantiate new Employee.", () => {
-            const newEmployee = new Employee;
+            const newEmployee = new Employee();
 
             expect(typeof(newEmployee)).toBe('object'); 
         })
