@@ -8,7 +8,9 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+// global variables
 const team = [];
+var employeeAdded = true;
 
 // Inquirer to collect infos on employees 
 const questions = {
@@ -211,7 +213,21 @@ function addNewEmployee() {
     .then(data => {
         // console.log(data.employeeType)
         if (data.employeeType === "Manager") {
-
+            inquirer.prompt(questions.Manager)
+            .then(data => {
+                const manager = new Manager (
+                    data.name, data.id, data.email, data.officeNumber
+                );
+                // save info to team array if mangager doesn't exist
+                team.push(manager);
+                employeeAdded = false;
+                if (data.addEmployee === "yes") {
+                    addNewEmployee();
+                }
+                else {
+                    
+                }
+            })
         }
     });
 }
