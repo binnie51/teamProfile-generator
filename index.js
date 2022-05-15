@@ -1,17 +1,20 @@
-// Import files and modules
+// Import all classes
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+//Import neccesary dependecies
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const emailValidator = require("email-validator");
 
+const generateHTML = require("./src/generateTeam");
+
 // global variables
 const team = [];
-var employeeAdded = true;
+var CanAddEmployee = true;
 
 // Inquirer to collect infos on employees 
 const questions = {
@@ -201,27 +204,86 @@ const selectEmployeeType = [
     }
 ];
 
+// init function
 function addNewEmployee() {
     inquirer
     .prompt(selectEmployeeType)
     .then(data => {
         // console.log(data.employeeType)
-        if (data.employeeType === "Manager") {
-            inquirer.prompt(questions.Manager)
-            .then(data => {
-                const manager = new Manager (
+
+        if (CanAddEmployee) {
+            // if user answer `Manager`, they'll be given manager's prompt questions
+            if (data.employeeType === "Manager") {
+                inquirer.prompt(questions.Manager)
+                .then(data => {
+                    const manager = new Manager(
                     data.name, data.id, data.email, data.officeNumber
-                );
-                // save info to team array if mangager doesn't exist
+                    );
+                
                 team.push(manager);
-                employeeAdded = false;
+                // save info to the array, `team`, if the team doesn't have a manager
+                CanAddEmployee = false;
                 if (data.addEmployee === "yes") {
                     addNewEmployee();
                 }
                 else {
-                    
+                    return generateFile();
                 }
-            })
+                });
+            }
+            else {
+                console.log("This team already has a manager.");
+                addNewEmployee();
+            }
         }
+        
+        if (data.employeeType === "Engineer") {
+            inquirer
+            .prompt(questions.Engineer)
+            .then(data => {
+                const engineer = new Engineer(
+                    data.name, data.id, data.email, data.github
+                );
+                team.push(engineer);
+
+                // looping back to questions after registering engineer
+                // if 'no', generate my HTML now!
+                if (data.addEmployee === "yes") {
+                    addNewEmployee();
+                }
+                else {
+                    return generateFile();
+                }
+            });
+        }
+        if (data.employeeType === "Intern") {
+            inquirer
+            .prompt(questions.Intern)
+            .then(data => {
+                const intern = new Intern(
+                    data.name, data.id, data.email, data.school
+                )
+                team.push(intern);
+                
+                // looping back to questions after registering intern
+                // if 'no', generate my HTML now!
+                if (data.addEmployee === "yes") {
+                    addNewEmployee();
+                }
+                else {
+                    return generateFile();
+                };
+            });
+        };
+
     });
+};
+
+// function to generate my HTML file
+function generateFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+        err ? console.log(err) : console.log("HTML sucessfully generated!");
+    })
 }
+
+addNewEmployee();
