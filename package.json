@@ -24,6 +24,7 @@
     "jest": "^28.1.0"
   },
   "dependencies": {
+    "email-validator": "^2.0.4",
     "inquirer": "^8.2.4"
   }
 }

@@ -7,6 +7,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const emailValidator = require("email-validator");
 
 // global variables
 const team = [];
@@ -106,14 +107,7 @@ const questions = {
             type: "input",
             name: "email",
             message: "What is the engineer's email?",
-            validate: (value) => {
-                if (value) {
-                    return true
-                }
-                else {
-                    return "Please enter engineer's email."
-                }
-            },
+            validate: emailValidator
         },
         {
             type: "input",
