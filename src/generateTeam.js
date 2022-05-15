@@ -1,4 +1,4 @@
-const Employee = 
+
 
 module.exports = function (title, data) {
   return (

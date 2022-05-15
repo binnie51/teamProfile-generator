@@ -1,5 +1,4 @@
 // Import all classes
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -16,7 +15,7 @@ const generateHTML = require("./src/generateTeam");
 const team = [];
 var CanAddEmployee = true;
 
-// Inquirer to collect infos on employees 
+// Inquirer to collect inputs from employees, their job titles, and other necessary infos
 const questions = {
     Manager: [
         {
@@ -204,15 +203,15 @@ const selectEmployeeType = [
     }
 ];
 
-// init function
+// init function to activate inquirer
 function addNewEmployee() {
     inquirer
     .prompt(selectEmployeeType)
     .then(data => {
         // console.log(data.employeeType)
-
+        
         if (CanAddEmployee) {
-            // if user answer `Manager`, they'll be given manager's prompt questions
+            // when user answer `Manager`, they'll be given manager's prompt questions
             if (data.employeeType === "Manager") {
                 inquirer.prompt(questions.Manager)
                 .then(data => {
@@ -256,6 +255,7 @@ function addNewEmployee() {
                 }
             });
         }
+        
         if (data.employeeType === "Intern") {
             inquirer
             .prompt(questions.Intern)
@@ -280,10 +280,11 @@ function addNewEmployee() {
 };
 
 // function to generate my HTML file
-function generateFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
+function generateFile() {
+    fs.writeFileSync(generateHTML, data, (err) => {
         err ? console.log(err) : console.log("HTML sucessfully generated!");
     })
 }
 
+// function call to initialize app
 addNewEmployee();
