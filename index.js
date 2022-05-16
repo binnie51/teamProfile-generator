@@ -49,7 +49,7 @@ const questions = {
             name: "email",
             message: "What is the manager's email?",
             validate: (value) => {
-                if (value) {
+                if (emailValidator.validate(value)) {
                     return true
                 }
                 else {
@@ -109,7 +109,14 @@ const questions = {
             type: "input",
             name: "email",
             message: "What is the engineer's email?",
-            validate: emailValidator
+            validate: (value) => {
+                if (emailValidator.validate(value)) {
+                    return true
+                }
+                else {
+                    return "Please enter engineer's email."
+                }
+            },
         },
         {
             type: "input",
@@ -164,18 +171,18 @@ const questions = {
                 name: "email",
                 message: "What is the intern's email?",
                 validate: (value) => {
-                    if (value) {
+                    if (emailValidator.validate(value)) {
                         return true
                     }
                     else {
-                        return "Plese enter intern's name."
+                        return "Please enter intern's email."
                     }
-            },
+                },
         },
         {
             type: "input",
             name: "school",
-            message: "What school does the intern go to?",
+            message: "Which school does the intern go to?",
             validate: (value) => {
                 if (value) {
                     return true
