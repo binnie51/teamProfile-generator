@@ -281,7 +281,8 @@ function addNewEmployee() {
 
 // function to generate my HTML file
 function generateFile() {
-    fs.writeFileSync(generateHTML, data, (err) => {
+    const html = generateHTML(team);
+    fs.writeFileSync('./dist/team-profile.html', html, (err) => {
         err ? console.log(err) : console.log("HTML sucessfully generated!");
     })
 }
