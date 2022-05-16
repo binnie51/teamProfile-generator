@@ -1,4 +1,5 @@
 // Import all classes
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -12,8 +13,8 @@ const emailValidator = require("email-validator");
 const generateHTML = require("./src/generateTeam");
 
 // global variables
-const team = [];
-var CanAddEmployee = true;
+let team = [];
+let canAddEmployee = true;
 
 // Inquirer to collect inputs from employees, their job titles, and other necessary infos
 const questions = {
@@ -34,7 +35,7 @@ const questions = {
         {
             type: "input",
             name: "id",
-            message: "What is the manager's ID?",
+            message: "What is the manager's ID numbers?",
             validate: (value) => {
                 if (value) {
                     return true
@@ -95,7 +96,7 @@ const questions = {
         {
             type: "input",
             name: "id",
-            message: "What is the engineer's ID?",
+            message: "What is the engineer's ID numbers?",
             validate: (value) => {
                 if (value) {
                     return true
@@ -156,7 +157,7 @@ const questions = {
         {
             type: "input",
             name: "id",
-            message: "What is the intern's ID?",
+            message: "What is the intern's ID numbers?",
             validate: (value) => {
                 if (value) {
                     return true
@@ -217,10 +218,11 @@ function addNewEmployee() {
     .then(data => {
         // console.log(data.employeeType)
         
-        if (CanAddEmployee) {
+        if (data.employeeType === "Manager") {
             // when user answer `Manager`, they'll be given manager's prompt questions
-            if (data.employeeType === "Manager") {
-                inquirer.prompt(questions.Manager)
+            if (canAddEmployee) {
+                inquirer
+                .prompt(questions.Manager)
                 .then(data => {
                     const manager = new Manager(
                     data.name, data.id, data.email, data.officeNumber
@@ -228,7 +230,7 @@ function addNewEmployee() {
                 
                 team.push(manager);
                 // save info to the array, `team`, if the team doesn't have a manager
-                CanAddEmployee = false;
+                canAddEmployee = false;
                 if (data.addEmployee === "yes") {
                     addNewEmployee();
                 }
@@ -289,7 +291,7 @@ function addNewEmployee() {
 // function to generate my HTML file
 function generateFile() {
     const html = generateHTML(team);
-    fs.writeFileSync('./dist/team-profile.html', html, (err) => {
+    fs.writeFile('./dist/team-profile.html', html, (err) => {
         err ? console.log(err) : console.log("HTML sucessfully generated!");
     })
 }
