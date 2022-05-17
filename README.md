@@ -27,6 +27,9 @@ DO NOT CONTRIBUTE JUST YET! Ask by contacting me!
 ## Tests
 To run test, type npm test on the terminal while in the correct application path. All are tested under the __tests__ directory.
 
+[Video link](https://drive.google.com/file/d/1pzErLRwO082wmfngO1ZIDKMjmNZYdQuW/view) <br/>
+![test-demo](./demo%20assets/jest-test.gif)
+
 ## Demo
 [Click here to view the video](https://drive.google.com/file/d/11jiGpr-gnLrJJKrPIFtKoG3wLqLV0NPf/view) <br/>
 ![demo-video](./demo%20assets/team-generator.gif)
