@@ -1,15 +1,11 @@
-const Manager = require("../lib/Manager");
-const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
-
 function generateMyHtml(team) {
-  let renderCards = '';
+  var renderCards = '';
   let employeeUniqueProperty ='';
   let employeeTitle ='';
   
-  for(i = 1; i <= team.length - 1; i++) {
+  for(i = 0; i < team.length; i++) {
 
-    switch (team.length[i].getRole()) {
+    switch (team[i].getRole()) {
       case "Manager":
         employeeUniqueProperty = `Office Number: ${team[i].getOfficeNumber()}`;
         employeeTitle = `<i class="fas fa-mug-hot"></i> Manager`;
@@ -22,23 +18,25 @@ function generateMyHtml(team) {
         employeeUniqueProperty = `School: ${team[i].getSchool()}`;
         employeeTitle = `<i class="fas fa-user-graduate"></i> Intern`;
         break;
-    }
-    renderCards += (`
-    <div class="card shadow manager-card" style="width: 15rem;">
-    <div class="card-header bg-success text-white text-center mb-3">
-        <div class="card-title">${team[i].getName()}</div>
-        <div class="card-title">${employeeTitle}</div>
-    </div>
-    <div class="card-body">
-        <ul class="list-group list-group-flush border">
-            <li class="list-group-item text-success">ID: ${team[i].getId()}</li>
-            <li class="list-group-item text-success">Email: ${team[i].getEmail()}</li>
-            <li class="list-group-item text-success">Office Number: ${team[i].getOfficeNumber()}</li>
-        </ul>
-    </div>
-</div>
-    `)
+    };
+    
+    renderCards += `
+      <div class="card shadow" style="width: 18rem;">
+        <div class="card-header bg-success text-white text-center mb-3">
+            <div class="card-title">${team[i].getName()}</div>
+            <div class="card-title">${employeeTitle}</div>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush border">
+                <li class="list-group-item text-success">ID: ${team[i].getId()}</li>
+                <li class="list-group-item text-success">Email: ${team[i].getEmail()}</li>
+                <li class="list-group-item text-success">${employeeUniqueProperty}</li>
+            </ul>
+        </div>
+      </div>
+    `
   }
+
   return (
     `
     <!DOCTYPE html>
@@ -70,7 +68,7 @@ function generateMyHtml(team) {
                 <div class="container">
                     <div class="row">
                         <div class="row row-cols-3 justify-content-center gap-3 mt-5" id="team-content">
-                        ${renderCards}
+                          ${renderCards}
                         </div>    
                     </div>
                 </div>
@@ -86,6 +84,6 @@ function generateMyHtml(team) {
     </html>
 `
   );
-};
+}
 
 module.exports = generateMyHtml;

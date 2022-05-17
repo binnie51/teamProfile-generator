@@ -14,7 +14,7 @@ const generateHTML = require("./src/generateTeam");
 
 // global variables
 let team = [];
-let canAddEmployee = true;
+let canAddManager = true;
 
 // Inquirer to collect inputs from employees, their job titles, and other necessary infos
 const questions = {
@@ -219,33 +219,31 @@ function addNewEmployee() {
         // console.log(data.employeeType)
         
         if (data.employeeType === "Manager") {
-            // when user answer `Manager`, they'll be given manager's prompt questions
-            if (canAddEmployee) {
+            // when user answer `Manager`, they'll be given manager's prompt questions. ONLY ONE manager is allowed /team
+            if (canAddManager) {
                 inquirer
                 .prompt(questions.Manager)
                 .then(data => {
                     const manager = new Manager(
                     data.name, data.id, data.email, data.officeNumber
                     );
-                
-                team.push(manager);
                 // save info to the array, `team`, if the team doesn't have a manager
-                canAddEmployee = false;
+                // user(s) can't add another manager if one is already registered into the team 
+                team.push(manager);
+                canAddManager = false;
+                
                 if (data.addEmployee === "yes") {
                     addNewEmployee();
-                }
-                else {
-                    return generateFile();
+                } else {
+                    generateFile();
                 }
                 });
-            }
-            else {
+            } else {
                 console.log("This team already has a manager.");
                 addNewEmployee();
             }
-        }
-        
-        if (data.employeeType === "Engineer") {
+
+        } else if (data.employeeType === "Engineer") {
             inquirer
             .prompt(questions.Engineer)
             .then(data => {
@@ -263,9 +261,8 @@ function addNewEmployee() {
                     return generateFile();
                 }
             });
-        }
-        
-        if (data.employeeType === "Intern") {
+            
+        } else if (data.employeeType === "Intern") {
             inquirer
             .prompt(questions.Intern)
             .then(data => {
