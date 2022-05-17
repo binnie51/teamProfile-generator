@@ -23,13 +23,13 @@ function generateMyHtml(team) {
     renderCards += `
       <div class="card shadow" style="width: 18rem;">
         <div class="card-header bg-success text-white text-center mb-3">
-            <div class="card-title">${team[i].getName()}</div>
-            <div class="card-title">${employeeTitle}</div>
+            <h4 class="card-title">${team[i].getName()}</h4>
+            <p class="card-title fw-bolder">${employeeTitle}</p>
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush border">
                 <li class="list-group-item text-success">ID: ${team[i].getId()}</li>
-                <li class="list-group-item text-success">Email: ${team[i].getEmail()}</li>
+                <li class="list-group-item text-success">Email: <a href="${team[i].getEmail()}">${team[i].getEmail()}</a></li>
                 <li class="list-group-item text-success">${employeeUniqueProperty}</li>
             </ul>
         </div>

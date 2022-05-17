@@ -24,7 +24,7 @@ Note: Users can only register a single manager in a team.
 ## Contributing
 DO NOT CONTRIBUTE JUST YET! Ask by contacting me!
 
-# Tests
+## Tests
 To run test, type npm test on the terminal while in the correct application path. All are tested under the __tests__ directory.
 
 ## Demo
