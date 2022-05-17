@@ -11,7 +11,7 @@ function generateMyHtml(team) {
         employeeTitle = `<i class="fas fa-mug-hot"></i> Manager`;
         break;
       case "Engineer":
-        employeeUniqueProperty = `GitHub: ${team[i].getGithub()}`;
+        employeeUniqueProperty = `GitHub: <a href="${team[i].getGithub()}">${team[i].getGithub()}</a>`;
         employeeTitle = `<i class="fas fa-glasses"></i> Engineer`;
         break;
       case "Intern":

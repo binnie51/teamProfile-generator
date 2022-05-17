@@ -40,11 +40,11 @@ describe("Engineer", () => {
             expect(engineerEmail).toEqual("RikaKj@testmail.com");
         })
 
-        it("should return Employee when getRole() is called", () => {
+        it("should return Engineer when getRole() is called", () => {
             const newEngineer = new Engineer("Rika", 6921, "RikaKj@testmail.com", "hizzyRk");
             const role = newEngineer.getRole();
 
-            expect(role).toEqual("Employee");
+            expect(role).toEqual("Engineer");
         })
 
         it("should return gitHub after input.", () => {

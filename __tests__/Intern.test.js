@@ -47,11 +47,11 @@ describe("Intern", () => {
             expect(internSchool).toEqual("Meiji University");
         })
         
-        it("should return 'Employee' when getRole() is called.", () => {
+        it("should return 'Intern' when getRole() is called.", () => {
             const newIntern = new Intern("Rika", 6921, "RikaKj@testmail.com", "Meiji University");
             const role = newIntern.getRole();
 
-            expect(role).toEqual('Employee');
+            expect(role).toEqual('Intern');
         })
     });
 });

@@ -37,7 +37,7 @@ describe("Manager", () => {
             const newManager = new Manager("Rika", 6921, "RikaKj@testmail.com", 101);
             const managerEmail = newManager.getEmail();
 
-            expect(managerEmail).toEqual("RikaKj@testemail.com");
+            expect(managerEmail).toEqual("RikaKj@testmail.com");
         })
 
         it("should get the manager's office numbers.", () => {
@@ -47,11 +47,11 @@ describe("Manager", () => {
             expect(managerOfficeNum).toEqual(101);
         })
 
-        it("should return 'Employee' when getRole() is called.", () => {
+        it("should return 'Manager' when getRole() is called.", () => {
             const newManager = new Manager("Rika", 6921, "RikaKj@testmail.com", 101);
             const role = newManager.getRole();
 
-            expect(role).toEqual('Employee');
+            expect(role).toEqual('Manager');
         })
 
 
