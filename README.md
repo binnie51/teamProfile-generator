@@ -34,6 +34,9 @@ To run test, type npm test on the terminal while in the correct application path
 [Click here to view the video](https://drive.google.com/file/d/11jiGpr-gnLrJJKrPIFtKoG3wLqLV0NPf/view) <br/>
 ![demo-video](./demo%20assets/team-generator.gif)
 
+## Questions?
+Github: binnie51
+
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) <br/>
 Copyright (c) Vincent Tjia. All rights reserved.
